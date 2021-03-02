@@ -66,5 +66,16 @@ module.exports = {
                 }
             })
         })
+    },
+    modelUpdateProfile: (data, id) => {
+        return new Promise((resolve, reject) => {
+            conn.query(`UPDATE user SET ? WHERE id = ?`, [data, id], (err, response) => {
+                if(err){
+                    reject(new Error(err))
+                }else{
+                    resolve(response)
+                }
+            })
+        })
     }
 }

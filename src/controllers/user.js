@@ -1,7 +1,7 @@
 const bcrypt = require('bcrypt')
 const jwt = require('jsonwebtoken')
 const fs = require('fs')
-const { modelCheckEmail, modelRegister, modelGetDetailUser, modelGetAllUser, modelUpdateImage } = require('../models/user')
+const { modelCheckEmail, modelRegister, modelGetDetailUser, modelGetAllUser, modelUpdateImage, modelUpdateProfile } = require('../models/user')
 
 module.exports = {
     userRegister: (req, res) => {
@@ -112,5 +112,14 @@ module.exports = {
         } catch (err){
             res.status(500)
         }
+    },
+    updateProfile: (req, res) => {
+        const id = req.params.id
+        const data = req.body
+        modelUpdateProfile(data, id).then((response) => {
+            res.status(200).send('success')
+        }).catch((err) => {
+            res.status(500)
+        })
     }
 }
