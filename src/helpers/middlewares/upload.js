@@ -26,7 +26,7 @@ const singleUpload = (req, res, next) => {
     const multerSingle = multerUpload.single('image')
     multerSingle(req, res, (err) => {
         if(err){
-            console.log(err)
+            res.status(500).send(err)
         }else{
             next()
         }

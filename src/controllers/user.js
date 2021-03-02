@@ -21,7 +21,7 @@ module.exports = {
     
     modelCheckEmail(body.email).then(async(response) => {
         if(response.length >= 1){
-            res.status(500).send('Email terdaftar')
+            res.status(500).send('Email registered')
         }else{
             const salt = await bcrypt.genSalt(10)
             const password = await bcrypt.hash(body.password, salt)
@@ -31,7 +31,11 @@ module.exports = {
                 username: body.username,
                 email: body.email,
                 password,
-                image: 'default_image.png'
+                image: 'default_image.png',
+                bio: "Hey there i'm using ngeChat!",
+                phone: "+62",
+                lat: "-6.89846733562317",
+                lng: "107.60501039761238"
             }
 
             modelRegister(data).then((response) => {
@@ -61,10 +65,10 @@ module.exports = {
                 const data = [dataUser, token]
                 res.status(200).send(data)
             }else{
-                res.status(400).send('password salah')
+                res.status(400).send('Wrong password')
             }
         }else{
-            res.status(400).send('Email tidak terdaftar')
+            res.status(400).send(`Email didn't registered`)
         }
     })
     },
