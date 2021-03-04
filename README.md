@@ -29,3 +29,6 @@ beberapa module yang digunakan
 - nodemon
 - JWT
 - socket.io
+
+# Frontend
+[Frontend](https://github.com/FoXyKinGs/ngeChat-fe)
